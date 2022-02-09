@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\game-dev\\Practice\\Shooter\\MyShooter\\Source\\MyShooter\\MyShooter.Build.cs",
+		"D:\\game-dev\\Practice\\Shooter\\MyShooter\\Source\\MyShooter.Target.cs",
+		"D:\\game-dev\\Practice\\Shooter\\MyShooter\\Source\\MyShooterEditor.Target.cs"
+	],
+	"EngineVersion": "4.27.1"
+}

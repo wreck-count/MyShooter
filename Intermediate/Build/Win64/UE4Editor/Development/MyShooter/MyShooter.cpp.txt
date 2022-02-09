@@ -1,0 +1,2 @@
+D:\game-dev\practice\Shooter\MyShooter\Intermediate\Build\Win64\UE4Editor\Development\MyShooter\Definitions.MyShooter.h
+D:\game-dev\practice\Shooter\MyShooter\Source\MyShooter\MyShooter.h
