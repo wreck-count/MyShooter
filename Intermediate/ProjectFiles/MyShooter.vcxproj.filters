@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\MyShooter.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{F44A2BB5-5128-4306-99FE-1F8AECB8CEA1}</UniqueIdentifier>
+      <UniqueIdentifier>{DF99DCC3-D1F8-42DF-B5C0-C7DD9A176525}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\MyShooter.Target.cs">
       <Filter>Source</Filter>
@@ -11,8 +11,10 @@
     <None Include="..\..\Source\MyShooterEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{6B9BC621-620A-4C60-B448-F2349251CDFD}</UniqueIdentifier>
+      <UniqueIdentifier>{74DD676C-973D-4B9F-BE84-969D1E7E7105}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,7 +26,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\MyShooter">
-      <UniqueIdentifier>{B2C7C608-3C76-4535-9A41-63192B19D468}</UniqueIdentifier>
+      <UniqueIdentifier>{ED14AC81-FE58-49DE-B73E-2F3CAFA0DFAC}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\MyShooter\MyShooter.Build.cs">
       <Filter>Source\MyShooter</Filter>
@@ -39,6 +41,18 @@
       <Filter>Source\MyShooter</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\MyShooter\MyShooterGameModeBase.h">
+      <Filter>Source\MyShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MyShooter\Shooter.cpp">
+      <Filter>Source\MyShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyShooter\Shooter.h">
+      <Filter>Source\MyShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MyShooter\Shooter0.cpp">
+      <Filter>Source\MyShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyShooter\Shooter0.h">
       <Filter>Source\MyShooter</Filter>
     </ClInclude>
   </ItemGroup>
