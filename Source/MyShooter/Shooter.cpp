@@ -5,7 +5,11 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 // Sets default values
-AShooter::AShooter()
+AShooter::AShooter() :
+	BaseTurnRate(45.f),
+	BaseLookUpRate(45.f),
+	MouseVerticalSensitivity(1.f),
+	MouseHorizontalSensitivity(1.f)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -54,6 +58,28 @@ void AShooter::MoveRight(float Value)
 	}
 }
 
+void AShooter::TurnRight(float Rate)
+{
+	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->DeltaTimeSeconds);
+
+}
+
+void AShooter::LookUp(float Rate)
+{
+	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->DeltaTimeSeconds);
+
+}
+
+void AShooter::MouseTurnRight(float MouseX)
+{
+	AddControllerYawInput(MouseX * MouseHorizontalSensitivity);
+}
+
+void AShooter::MouseLookUp(float MouseY)
+{
+	AddControllerPitchInput(MouseY * MouseVerticalSensitivity);
+}
+
 // Called every frame
 void AShooter::Tick(float DeltaTime)
 {
@@ -69,5 +95,9 @@ void AShooter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AShooter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AShooter::MoveRight);
+	PlayerInputComponent->BindAxis("TurnRight", this, &AShooter::TurnRight);
+	PlayerInputComponent->BindAxis("LookUp", this, &AShooter::LookUp);
+	PlayerInputComponent->BindAxis("TurnX", this, &AShooter::MouseTurnRight);
+	PlayerInputComponent->BindAxis("LookY", this, &AShooter::MouseLookUp);
 }
 

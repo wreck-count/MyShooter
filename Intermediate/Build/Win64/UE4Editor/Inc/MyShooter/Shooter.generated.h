@@ -60,7 +60,11 @@ public: \
 
 #define MyShooter_Source_MyShooter_Shooter_h_12_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CameraBoom() { return STRUCT_OFFSET(AShooter, CameraBoom); } \
-	FORCEINLINE static uint32 __PPO__FollowCamera() { return STRUCT_OFFSET(AShooter, FollowCamera); }
+	FORCEINLINE static uint32 __PPO__FollowCamera() { return STRUCT_OFFSET(AShooter, FollowCamera); } \
+	FORCEINLINE static uint32 __PPO__BaseTurnRate() { return STRUCT_OFFSET(AShooter, BaseTurnRate); } \
+	FORCEINLINE static uint32 __PPO__BaseLookUpRate() { return STRUCT_OFFSET(AShooter, BaseLookUpRate); } \
+	FORCEINLINE static uint32 __PPO__MouseVerticalSensitivity() { return STRUCT_OFFSET(AShooter, MouseVerticalSensitivity); } \
+	FORCEINLINE static uint32 __PPO__MouseHorizontalSensitivity() { return STRUCT_OFFSET(AShooter, MouseHorizontalSensitivity); }
 
 
 #define MyShooter_Source_MyShooter_Shooter_h_9_PROLOG

@@ -22,7 +22,14 @@ protected:
 	void MoveForward(float Value);
 
 	void MoveRight(float Value);
+	
+	void TurnRight(float Rate);
 
+	void LookUp(float Rate);
+
+	void MouseTurnRight(float MouseX);
+
+	void MouseLookUp(float MouseY);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -30,12 +37,26 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float BaseTurnRate;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float BaseLookUpRate;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float MouseVerticalSensitivity;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float MouseHorizontalSensitivity;
+
 public:
 	/*Returns a CameraBoom object*/
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
