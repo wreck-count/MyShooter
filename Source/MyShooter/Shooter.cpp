@@ -99,5 +99,9 @@ void AShooter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("LookUp", this, &AShooter::LookUp);
 	PlayerInputComponent->BindAxis("TurnX", this, &AShooter::MouseTurnRight);
 	PlayerInputComponent->BindAxis("LookY", this, &AShooter::MouseLookUp);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	
 }
 
