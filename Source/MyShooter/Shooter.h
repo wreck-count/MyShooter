@@ -33,6 +33,12 @@ protected:
 
 	void FireWeapon();
 
+	/* Handle when Aim button is pressed, set bIsAiming to true*/
+	void AimButtonPressed();
+	
+	/*Handle when Aim button is released, set bIsAiming to false*/
+	void AimButtonReleased();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -75,8 +81,19 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	UParticleSystem* BeamParticles;
 
+	/* Stores the state of aiming*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	bool bIsAiming;
+
+	/* Stores the follow camera's default field of view*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float FollowCameraDefaultFOV;
+
+	/* Stores the follow camera's aiming field of view*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float FollowCameraAimingFOV;
 public:
 	/*Returns a CameraBoom object*/
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	FORCEINLINE UCameraComponent* GetCamera() const { return FollowCamera; }
+	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 };

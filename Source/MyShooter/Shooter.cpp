@@ -16,7 +16,10 @@ AShooter::AShooter() :
 	BaseTurnRate(45.f),
 	BaseLookUpRate(45.f),
 	MouseVerticalSensitivity(1.f),
-	MouseHorizontalSensitivity(1.f)
+	MouseHorizontalSensitivity(1.f),
+	bIsAiming(false),
+	FollowCameraDefaultFOV(0.f),
+	FollowCameraAimingFOV(60.f)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -49,9 +52,13 @@ void AShooter::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("BeginPlay() has been called!!"));
-	int myint{ 42 };
-	UE_LOG(LogTemp, Warning, TEXT("int myint: %d"), myint);
 	
+	if (FollowCamera) {
+		FollowCameraDefaultFOV = GetFollowCamera()->FieldOfView; 
+	}
+	
+
+
 }
 
 void AShooter::MoveForward(float Value)
@@ -105,6 +112,17 @@ void AShooter::Tick(float DeltaTime)
 
 }
 
+void AShooter::AimButtonPressed() {
+
+	bIsAiming = true;
+	GetFollowCamera()->FieldOfView = FollowCameraAimingFOV;
+}
+
+void AShooter::AimButtonReleased() {
+
+	bIsAiming = false;
+	GetFollowCamera()->FieldOfView = FollowCameraDefaultFOV;
+}
 
 //FireWeapon
 void AShooter::FireWeapon() {
@@ -200,5 +218,8 @@ void AShooter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	
 	PlayerInputComponent->BindAction("FireButton", IE_Pressed, this, &AShooter::FireWeapon);
+
+	PlayerInputComponent->BindAction("AimButton", IE_Pressed, this, &AShooter::AimButtonPressed);
+	PlayerInputComponent->BindAction("AimButton", IE_Released, this, &AShooter::AimButtonReleased);
 }
 
