@@ -64,7 +64,12 @@ public: \
 	FORCEINLINE static uint32 __PPO__BaseTurnRate() { return STRUCT_OFFSET(AShooter, BaseTurnRate); } \
 	FORCEINLINE static uint32 __PPO__BaseLookUpRate() { return STRUCT_OFFSET(AShooter, BaseLookUpRate); } \
 	FORCEINLINE static uint32 __PPO__MouseVerticalSensitivity() { return STRUCT_OFFSET(AShooter, MouseVerticalSensitivity); } \
-	FORCEINLINE static uint32 __PPO__MouseHorizontalSensitivity() { return STRUCT_OFFSET(AShooter, MouseHorizontalSensitivity); }
+	FORCEINLINE static uint32 __PPO__MouseHorizontalSensitivity() { return STRUCT_OFFSET(AShooter, MouseHorizontalSensitivity); } \
+	FORCEINLINE static uint32 __PPO__FireSound() { return STRUCT_OFFSET(AShooter, FireSound); } \
+	FORCEINLINE static uint32 __PPO__MuzzleFlash() { return STRUCT_OFFSET(AShooter, MuzzleFlash); } \
+	FORCEINLINE static uint32 __PPO__HipFireMontage() { return STRUCT_OFFSET(AShooter, HipFireMontage); } \
+	FORCEINLINE static uint32 __PPO__ImpactParticles() { return STRUCT_OFFSET(AShooter, ImpactParticles); } \
+	FORCEINLINE static uint32 __PPO__BeamParticles() { return STRUCT_OFFSET(AShooter, BeamParticles); }
 
 
 #define MyShooter_Source_MyShooter_Shooter_h_9_PROLOG
