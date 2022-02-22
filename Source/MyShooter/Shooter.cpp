@@ -19,7 +19,9 @@ AShooter::AShooter() :
 	MouseHorizontalSensitivity(1.f),
 	bIsAiming(false),
 	FollowCameraDefaultFOV(0.f),
-	FollowCameraAimingFOV(60.f)
+	FollowCameraAimingFOV(40.f),
+	FollowCameraCurrentFOV(0.f),
+	FollowCameraAimSpeed(30.f)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -27,9 +29,9 @@ AShooter::AShooter() :
 	//create a camera which has camera boom retract enabled
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 300.f;// Follow Distance
+	CameraBoom->TargetArmLength = 180.f;// Follow Distance
 	CameraBoom->bUsePawnControlRotation = true;// Rotate arm based on controller
-	CameraBoom->SocketOffset = FVector(0.f, 50.f, 50.f);
+	CameraBoom->SocketOffset = FVector(0.f, 50.f, 70.f);
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
@@ -54,10 +56,27 @@ void AShooter::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("BeginPlay() has been called!!"));
 	
 	if (FollowCamera) {
-		FollowCameraDefaultFOV = GetFollowCamera()->FieldOfView; 
+		FollowCameraCurrentFOV = FollowCameraDefaultFOV = GetFollowCamera()->FieldOfView; 
 	}
 	
 
+
+}
+
+// Called every frame
+void AShooter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	UpdateAim(DeltaTime);
+
+}
+
+void AShooter::UpdateAim(const float& DeltaTime) {
+
+	FollowCameraCurrentFOV = (bIsAiming) ?
+		FMath::FInterpTo(FollowCameraCurrentFOV, FollowCameraAimingFOV, DeltaTime, FollowCameraAimSpeed) :
+		FMath::FInterpTo(FollowCameraCurrentFOV, FollowCameraDefaultFOV, DeltaTime, FollowCameraAimSpeed);
+	GetFollowCamera()->FieldOfView = FollowCameraCurrentFOV;
 
 }
 
@@ -103,13 +122,6 @@ void AShooter::MouseTurnRight(float MouseX)
 void AShooter::MouseLookUp(float MouseY)
 {
 	AddControllerPitchInput(MouseY * MouseVerticalSensitivity);
-}
-
-// Called every frame
-void AShooter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void AShooter::AimButtonPressed() {

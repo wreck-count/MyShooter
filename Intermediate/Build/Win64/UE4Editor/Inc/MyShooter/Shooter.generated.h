@@ -71,8 +71,7 @@ public: \
 	FORCEINLINE static uint32 __PPO__ImpactParticles() { return STRUCT_OFFSET(AShooter, ImpactParticles); } \
 	FORCEINLINE static uint32 __PPO__BeamParticles() { return STRUCT_OFFSET(AShooter, BeamParticles); } \
 	FORCEINLINE static uint32 __PPO__bIsAiming() { return STRUCT_OFFSET(AShooter, bIsAiming); } \
-	FORCEINLINE static uint32 __PPO__FollowCameraDefaultFOV() { return STRUCT_OFFSET(AShooter, FollowCameraDefaultFOV); } \
-	FORCEINLINE static uint32 __PPO__FollowCameraAimingFOV() { return STRUCT_OFFSET(AShooter, FollowCameraAimingFOV); }
+	FORCEINLINE static uint32 __PPO__FollowCameraAimSpeed() { return STRUCT_OFFSET(AShooter, FollowCameraAimSpeed); }
 
 
 #define MyShooter_Source_MyShooter_Shooter_h_9_PROLOG

@@ -39,6 +39,9 @@ protected:
 	/*Handle when Aim button is released, set bIsAiming to false*/
 	void AimButtonReleased();
 
+	/* Handle field of view of Follow Camera for Aiming*/
+	void UpdateAim(const float& DeltaTime);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -86,12 +89,18 @@ private:
 	bool bIsAiming;
 
 	/* Stores the follow camera's default field of view*/
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float FollowCameraDefaultFOV;
 
 	/* Stores the follow camera's aiming field of view*/
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float FollowCameraAimingFOV;
+
+	/* Tracks the current field of view for the follow camera*/
+	float FollowCameraCurrentFOV;
+
+	/* Follow Camera Aim zoom speed*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float FollowCameraAimSpeed;
+
 public:
 	/*Returns a CameraBoom object*/
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
