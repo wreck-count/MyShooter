@@ -23,8 +23,112 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AShooter::execGetCrosshairSpreadMultiplier)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(float*)Z_Param__Result=P_THIS->GetCrosshairSpreadMultiplier();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AShooter::execAutoFireReset)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AutoFireReset();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AShooter::execFinishCrosshairBulletFire)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->FinishCrosshairBulletFire();
+		P_NATIVE_END;
+	}
 	void AShooter::StaticRegisterNativesAShooter()
 	{
+		UClass* Class = AShooter::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "AutoFireReset", &AShooter::execAutoFireReset },
+			{ "FinishCrosshairBulletFire", &AShooter::execFinishCrosshairBulletFire },
+			{ "GetCrosshairSpreadMultiplier", &AShooter::execGetCrosshairSpreadMultiplier },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AShooter_AutoFireReset_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShooter_AutoFireReset_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Shooter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooter_AutoFireReset_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooter, nullptr, "AutoFireReset", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AShooter_AutoFireReset_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooter_AutoFireReset_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AShooter_AutoFireReset()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AShooter_AutoFireReset_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Shooter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooter, nullptr, "FinishCrosshairBulletFire", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics
+	{
+		struct Shooter_eventGetCrosshairSpreadMultiplier_Parms
+		{
+			float ReturnValue;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Shooter_eventGetCrosshairSpreadMultiplier_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Shooter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooter, nullptr, "GetCrosshairSpreadMultiplier", nullptr, nullptr, sizeof(Shooter_eventGetCrosshairSpreadMultiplier_Parms), Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_AShooter_NoRegister()
 	{
@@ -33,6 +137,7 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 	struct Z_Construct_UClass_AShooter_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -60,6 +165,22 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MouseHorizontalSensitivity_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_MouseHorizontalSensitivity;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HipMouseVerticalSensitivity_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_HipMouseVerticalSensitivity;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HipMouseHorizontalSensitivity_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_HipMouseHorizontalSensitivity;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AimMouseVerticalSensitivity_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_AimMouseVerticalSensitivity;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AimMouseHorizontalSensitivity_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_AimMouseHorizontalSensitivity;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FireSound_MetaData[];
 #endif
@@ -89,6 +210,26 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FollowCameraAimSpeed_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_FollowCameraAimSpeed;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrosshairSpreadMultiplier_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_CrosshairSpreadMultiplier;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrosshairSpreadAir_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_CrosshairSpreadAir;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrosshairSpreadMotion_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_CrosshairSpreadMotion;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrosshairSpreadAim_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_CrosshairSpreadAim;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrosshairSpreadHip_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_CrosshairSpreadHip;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -96,6 +237,11 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 	UObject* (*const Z_Construct_UClass_AShooter_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_ACharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_MyShooter,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_AShooter_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AShooter_AutoFireReset, "AutoFireReset" }, // 2715194660
+		{ &Z_Construct_UFunction_AShooter_FinishCrosshairBulletFire, "FinishCrosshairBulletFire" }, // 4080436575
+		{ &Z_Construct_UFunction_AShooter_GetCrosshairSpreadMultiplier, "GetCrosshairSpreadMultiplier" }, // 59761186
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::Class_MetaDataParams[] = {
@@ -142,7 +288,9 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_MouseVerticalSensitivity_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Camera" },
+		{ "Comment", "/*current vertical mouse sens*/" },
 		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "current vertical mouse sens" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_MouseVerticalSensitivity = { "MouseVerticalSensitivity", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, MouseVerticalSensitivity), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_MouseVerticalSensitivity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_MouseVerticalSensitivity_MetaData)) };
@@ -150,10 +298,52 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_MouseHorizontalSensitivity_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Camera" },
+		{ "Comment", "/*current horizontal mouse sens*/" },
 		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "current horizontal mouse sens" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_MouseHorizontalSensitivity = { "MouseHorizontalSensitivity", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, MouseHorizontalSensitivity), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_MouseHorizontalSensitivity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_MouseHorizontalSensitivity_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseVerticalSensitivity_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Camera" },
+		{ "Comment", "/* vertical mouse sens when hip firing*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "vertical mouse sens when hip firing" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseVerticalSensitivity = { "HipMouseVerticalSensitivity", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, HipMouseVerticalSensitivity), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseVerticalSensitivity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseVerticalSensitivity_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseHorizontalSensitivity_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Camera" },
+		{ "Comment", "/*horizontal mouse sens when hip firing*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "horizontal mouse sens when hip firing" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseHorizontalSensitivity = { "HipMouseHorizontalSensitivity", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, HipMouseHorizontalSensitivity), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseHorizontalSensitivity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseHorizontalSensitivity_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseVerticalSensitivity_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Camera" },
+		{ "Comment", "/*vertical mouse sens when aiming*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "vertical mouse sens when aiming" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseVerticalSensitivity = { "AimMouseVerticalSensitivity", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, AimMouseVerticalSensitivity), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseVerticalSensitivity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseVerticalSensitivity_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseHorizontalSensitivity_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Camera" },
+		{ "Comment", "/*horizontal mouse sens when aiming*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "horizontal mouse sens when aiming" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseHorizontalSensitivity = { "AimMouseHorizontalSensitivity", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, AimMouseHorizontalSensitivity), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseHorizontalSensitivity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseHorizontalSensitivity_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_FireSound_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -218,6 +408,56 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_FollowCameraAimSpeed = { "FollowCameraAimSpeed", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, FollowCameraAimSpeed), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_FollowCameraAimSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_FollowCameraAimSpeed_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMultiplier_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Crosshair" },
+		{ "Comment", "/* stores the value proportional to the total crosshair spread due to several factors*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "stores the value proportional to the total crosshair spread due to several factors" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMultiplier = { "CrosshairSpreadMultiplier", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, CrosshairSpreadMultiplier), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMultiplier_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMultiplier_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAir_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Crosshair" },
+		{ "Comment", "/*Stores the component of crosshair spread while in air*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "Stores the component of crosshair spread while in air" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAir = { "CrosshairSpreadAir", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, CrosshairSpreadAir), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAir_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAir_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMotion_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Crosshair" },
+		{ "Comment", "/*Stores the component of crosshair spread while in motion*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "Stores the component of crosshair spread while in motion" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMotion = { "CrosshairSpreadMotion", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, CrosshairSpreadMotion), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMotion_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMotion_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAim_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Crosshair" },
+		{ "Comment", "/*Stores the componenet of crosshair spread while aiming*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "Stores the componenet of crosshair spread while aiming" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAim = { "CrosshairSpreadAim", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, CrosshairSpreadAim), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAim_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAim_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadHip_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Crosshair" },
+		{ "Comment", "/*Stores the component of crosshair spread while hip aiming*/" },
+		{ "ModuleRelativePath", "Shooter.h" },
+		{ "ToolTip", "Stores the component of crosshair spread while hip aiming" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadHip = { "CrosshairSpreadHip", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooter, CrosshairSpreadHip), METADATA_PARAMS(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadHip_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadHip_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_CameraBoom,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_FollowCamera,
@@ -225,6 +465,10 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_BaseLookUpRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_MouseVerticalSensitivity,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_MouseHorizontalSensitivity,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseVerticalSensitivity,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_HipMouseHorizontalSensitivity,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseVerticalSensitivity,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_AimMouseHorizontalSensitivity,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_FireSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_MuzzleFlash,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_HipFireMontage,
@@ -232,6 +476,11 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_BeamParticles,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_bIsAiming,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_FollowCameraAimSpeed,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMultiplier,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAir,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadMotion,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadAim,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooter_Statics::NewProp_CrosshairSpreadHip,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AShooter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AShooter>::IsAbstract,
@@ -241,11 +490,11 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 		"Game",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_AShooter_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_AShooter_Statics::PropPointers),
 		0,
 		0x009000A4u,
@@ -260,7 +509,7 @@ void EmptyLinkFunctionForGeneratedCodeShooter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShooter, 3766948667);
+	IMPLEMENT_CLASS(AShooter, 1288335288);
 	template<> MYSHOOTER_API UClass* StaticClass<AShooter>()
 	{
 		return AShooter::StaticClass();

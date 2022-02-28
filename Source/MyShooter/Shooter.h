@@ -42,6 +42,27 @@ protected:
 	/* Handle field of view of Follow Camera for Aiming*/
 	void UpdateAim(const float& DeltaTime);
 
+	/* Handle mouse sensitivity for aiming*/
+	void UpdateMouseSensitivity();
+
+	void CalculateCrosshairSpreadMultiplier(const float& DeltaTime);
+
+	/* initiates a Bullet fire timer and calls FinishCrosshairBulletFire on timer end*/
+	void StartCrosshairBulletFire();
+
+	UFUNCTION()
+	void FinishCrosshairBulletFire();
+
+
+	void FireButtonPressed();
+	
+	void FireButtonReleased();
+
+	void StartAutoFire();
+
+	UFUNCTION()
+	void AutoFireReset();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -63,11 +84,29 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float BaseLookUpRate;
 
+	/*current vertical mouse sens*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float MouseVerticalSensitivity;
 
+	/*current horizontal mouse sens*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float MouseHorizontalSensitivity;
+
+	/* vertical mouse sens when hip firing*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float HipMouseVerticalSensitivity;
+
+	/*horizontal mouse sens when hip firing*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float HipMouseHorizontalSensitivity;
+
+	/*vertical mouse sens when aiming*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float AimMouseVerticalSensitivity;
+
+	/*horizontal mouse sens when aiming*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	float AimMouseHorizontalSensitivity;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	class USoundCue* FireSound;
@@ -101,8 +140,47 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float FollowCameraAimSpeed;
 
+	/* stores the value proportional to the total crosshair spread due to several factors*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Crosshair, meta = (AllowPrivateAccess = "true"))
+	float CrosshairSpreadMultiplier;
+
+	/*Stores the component of crosshair spread while in air*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Crosshair, meta = (AllowPrivateAccess = "true"))
+	float CrosshairSpreadAir;
+
+	/*Stores the component of crosshair spread while in motion*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Crosshair, meta = (AllowPrivateAccess = "true"))
+	float CrosshairSpreadMotion;
+
+	/*Stores the componenet of crosshair spread while aiming*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Crosshair, meta = (AllowPrivateAccess = "true"))
+	float CrosshairSpreadAim;
+
+	/*Stores the component of crosshair spread while hip aiming*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Crosshair, meta = (AllowPrivateAccess = "true"))
+	float CrosshairSpreadHip;
+
+	float CrosshairSpreadShoot;
+
+	float ShootTimeDuration;
+	bool bShooting;
+	FTimerHandle CrosshairShootTimer;
+
+	bool bFireButtonPressed;
+	bool bShouldFire;
+	float AutoFireRate;
+	FTimerHandle AutoFireTimer;
+
 public:
 	/*Returns a CameraBoom object*/
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+
+	/*Returns Follow Camera object*/
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	/* Returns the state of aiming*/
+	FORCEINLINE bool IsAiming() const { return bIsAiming; }
+
+	UFUNCTION(BlueprintCallable)
+	float GetCrosshairSpreadMultiplier() const;
 };

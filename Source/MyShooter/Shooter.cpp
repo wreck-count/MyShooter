@@ -13,15 +13,31 @@
 #include "Kismet/KismetSystemLibrary.h"
 // Sets default values
 AShooter::AShooter() :
+	//Base aim rates
 	BaseTurnRate(45.f),
 	BaseLookUpRate(45.f),
+	//Aim sensitivities 
 	MouseVerticalSensitivity(1.f),
 	MouseHorizontalSensitivity(1.f),
+	HipMouseVerticalSensitivity(1.f),
+	HipMouseHorizontalSensitivity(1.f),
+	AimMouseVerticalSensitivity(.5f),
+	AimMouseHorizontalSensitivity(.5f),
+	//Aim state
 	bIsAiming(false),
+	//follow camera aim properties
 	FollowCameraDefaultFOV(0.f),
 	FollowCameraAimingFOV(40.f),
 	FollowCameraCurrentFOV(0.f),
-	FollowCameraAimSpeed(30.f)
+	FollowCameraAimSpeed(30.f),
+	//shoot timer variables
+	bShooting(false),
+	CrosshairSpreadShoot(0.f),
+	ShootTimeDuration(.05f),
+	//weapon fire variables
+	bFireButtonPressed(false),
+	bShouldFire(true),
+	AutoFireRate(.1f)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -59,8 +75,10 @@ void AShooter::BeginPlay()
 		FollowCameraCurrentFOV = FollowCameraDefaultFOV = GetFollowCamera()->FieldOfView; 
 	}
 	
+	MouseVerticalSensitivity = HipMouseVerticalSensitivity;
+	MouseHorizontalSensitivity = HipMouseHorizontalSensitivity;
 
-
+	CrosshairSpreadMultiplier = CrosshairSpreadAim = CrosshairSpreadAir = CrosshairSpreadHip = CrosshairSpreadMotion = 0.f;
 }
 
 // Called every frame
@@ -68,15 +86,90 @@ void AShooter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	UpdateAim(DeltaTime);
+	UpdateMouseSensitivity();
+	CalculateCrosshairSpreadMultiplier(DeltaTime);
+	FString CrosshairSpreadMessage = FString::Printf(TEXT("CrossHairSpreadMultiplier : %f"), CrosshairSpreadMultiplier);
+	GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Red, CrosshairSpreadMessage);
 
 }
+
+void AShooter::UpdateMouseSensitivity() {
+	MouseVerticalSensitivity = (bIsAiming) ? AimMouseVerticalSensitivity : HipMouseVerticalSensitivity;
+	MouseHorizontalSensitivity = (bIsAiming) ? AimMouseHorizontalSensitivity : HipMouseHorizontalSensitivity;
+}
+
+void AShooter::CalculateCrosshairSpreadMultiplier(const float& DeltaTime)
+{
+	FVector2D WalkSpeedRange = { 0.f, 600.f };
+	FVector2D SpeedMultiplierRange = { 0.f, 1.f };
+	FVector Velocity{ GetVelocity() };
+	Velocity.Z = 0;
+
+	CrosshairSpreadMotion = FMath::GetMappedRangeValueClamped(WalkSpeedRange, SpeedMultiplierRange, Velocity.Size());
+
+	CrosshairSpreadAir = (!GetCharacterMovement()->IsFalling())?
+		FMath::FInterpTo(CrosshairSpreadAir, 0.f, DeltaTime, 30.f) :
+		FMath::FInterpTo(CrosshairSpreadAir, 2.25f, DeltaTime, 2.25f);
+
+	CrosshairSpreadAim = (IsAiming()) ?
+		FMath::FInterpTo(CrosshairSpreadAim, 0.6f, DeltaTime, 30.f) :
+		FMath::FInterpTo(CrosshairSpreadAim, 0.f, DeltaTime, 30.f);
+
+	CrosshairSpreadShoot = (bShooting) ?
+		FMath::FInterpTo(CrosshairSpreadShoot, .5f, DeltaTime, 60.f) :
+		FMath::FInterpTo(CrosshairSpreadShoot, 0.f, DeltaTime, 45.f);
+
+	CrosshairSpreadMultiplier = .5f + CrosshairSpreadMotion + CrosshairSpreadAir - CrosshairSpreadAim + CrosshairSpreadShoot;
+
+}
+
+void AShooter::StartCrosshairBulletFire()
+{
+	bShooting = true;
+
+	GetWorldTimerManager().SetTimer(CrosshairShootTimer, this, &AShooter::FinishCrosshairBulletFire, ShootTimeDuration);
+}
+
+void AShooter::FinishCrosshairBulletFire()
+{
+	bShooting = false;
+}
+
+void AShooter::FireButtonPressed()
+{
+	bFireButtonPressed = true;
+	StartAutoFire();
+}
+
+void AShooter::FireButtonReleased()
+{
+	bFireButtonPressed = false;
+}
+
+void AShooter::StartAutoFire()
+{
+	if (bShouldFire) {
+		FireWeapon();
+		bShouldFire = false;
+		GetWorldTimerManager().SetTimer(AutoFireTimer, this, &AShooter::AutoFireReset, AutoFireRate);
+	}
+}
+
+void AShooter::AutoFireReset()
+{
+	bShouldFire = true;
+	if (bFireButtonPressed) {
+		StartAutoFire();
+	}
+}
+
 
 void AShooter::UpdateAim(const float& DeltaTime) {
 
 	FollowCameraCurrentFOV = (bIsAiming) ?
 		FMath::FInterpTo(FollowCameraCurrentFOV, FollowCameraAimingFOV, DeltaTime, FollowCameraAimSpeed) :
 		FMath::FInterpTo(FollowCameraCurrentFOV, FollowCameraDefaultFOV, DeltaTime, FollowCameraAimSpeed);
-	GetFollowCamera()->FieldOfView = FollowCameraCurrentFOV;
+	GetFollowCamera()->SetFieldOfView(FollowCameraCurrentFOV);
 
 }
 
@@ -127,13 +220,11 @@ void AShooter::MouseLookUp(float MouseY)
 void AShooter::AimButtonPressed() {
 
 	bIsAiming = true;
-	GetFollowCamera()->FieldOfView = FollowCameraAimingFOV;
 }
 
 void AShooter::AimButtonReleased() {
 
 	bIsAiming = false;
-	GetFollowCamera()->FieldOfView = FollowCameraDefaultFOV;
 }
 
 //FireWeapon
@@ -159,7 +250,7 @@ void AShooter::FireWeapon() {
 		}
 		
 		FVector2D CrosshairLocation(ViewPortSize.X / 2.f, ViewPortSize.Y / 2.f);
-		CrosshairLocation.Y -= 50.f;
+		//CrosshairLocation.Y -= 50.f;
 
 		FVector CrosshairWorldLocation;
 		FVector CrosshairWorldDirection;
@@ -211,6 +302,8 @@ void AShooter::FireWeapon() {
 		AnimInstance->Montage_JumpToSection(FName("StartFire"));
 	}
 
+	StartCrosshairBulletFire();
+
 }
 
 // Called to bind functionality to input
@@ -229,9 +322,15 @@ void AShooter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	
-	PlayerInputComponent->BindAction("FireButton", IE_Pressed, this, &AShooter::FireWeapon);
+	PlayerInputComponent->BindAction("FireButton", IE_Pressed, this, &AShooter::FireButtonPressed);
+	PlayerInputComponent->BindAction("FireButton", IE_Released, this, &AShooter::FireButtonReleased);
 
 	PlayerInputComponent->BindAction("AimButton", IE_Pressed, this, &AShooter::AimButtonPressed);
 	PlayerInputComponent->BindAction("AimButton", IE_Released, this, &AShooter::AimButtonReleased);
+}
+
+float AShooter::GetCrosshairSpreadMultiplier() const
+{
+	return CrosshairSpreadMultiplier;
 }
 

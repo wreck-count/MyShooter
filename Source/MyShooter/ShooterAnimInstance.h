@@ -41,4 +41,8 @@ private:
 	/* Offset Yaw used to save the previous offset for jog stop*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	float PrevMovementOffsetYaw;
+
+	/* stores aiming state of the shooter character*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	bool bIsAiming;
 };

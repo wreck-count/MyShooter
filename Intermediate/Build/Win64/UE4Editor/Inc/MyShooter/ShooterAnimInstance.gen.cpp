@@ -105,6 +105,11 @@ void EmptyLinkFunctionForGeneratedCodeShooterAnimInstance() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PrevMovementOffsetYaw_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PrevMovementOffsetYaw;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsAiming_MetaData[];
+#endif
+		static void NewProp_bIsAiming_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsAiming;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -184,6 +189,20 @@ void EmptyLinkFunctionForGeneratedCodeShooterAnimInstance() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_PrevMovementOffsetYaw = { "PrevMovementOffsetYaw", nullptr, (EPropertyFlags)0x0040000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UShooterAnimInstance, PrevMovementOffsetYaw), METADATA_PARAMS(Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_PrevMovementOffsetYaw_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_PrevMovementOffsetYaw_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Combat" },
+		{ "Comment", "/* stores aiming state of the shooter character*/" },
+		{ "ModuleRelativePath", "ShooterAnimInstance.h" },
+		{ "ToolTip", "stores aiming state of the shooter character" },
+	};
+#endif
+	void Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming_SetBit(void* Obj)
+	{
+		((UShooterAnimInstance*)Obj)->bIsAiming = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming = { "bIsAiming", nullptr, (EPropertyFlags)0x0040000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UShooterAnimInstance), &Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming_SetBit, METADATA_PARAMS(Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UShooterAnimInstance_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_ShooterCharacter,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsInAir,
@@ -191,6 +210,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterAnimInstance() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_Speed,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_MovementOffsetYaw,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_PrevMovementOffsetYaw,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsAiming,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UShooterAnimInstance_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UShooterAnimInstance>::IsAbstract,
@@ -219,7 +239,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterAnimInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UShooterAnimInstance, 3521021944);
+	IMPLEMENT_CLASS(UShooterAnimInstance, 3243678066);
 	template<> MYSHOOTER_API UClass* StaticClass<UShooterAnimInstance>()
 	{
 		return UShooterAnimInstance::StaticClass();

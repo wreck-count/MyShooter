@@ -14,8 +14,20 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define MYSHOOTER_Shooter_generated_h
 
 #define MyShooter_Source_MyShooter_Shooter_h_12_SPARSE_DATA
-#define MyShooter_Source_MyShooter_Shooter_h_12_RPC_WRAPPERS
-#define MyShooter_Source_MyShooter_Shooter_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define MyShooter_Source_MyShooter_Shooter_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execGetCrosshairSpreadMultiplier); \
+	DECLARE_FUNCTION(execAutoFireReset); \
+	DECLARE_FUNCTION(execFinishCrosshairBulletFire);
+
+
+#define MyShooter_Source_MyShooter_Shooter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetCrosshairSpreadMultiplier); \
+	DECLARE_FUNCTION(execAutoFireReset); \
+	DECLARE_FUNCTION(execFinishCrosshairBulletFire);
+
+
 #define MyShooter_Source_MyShooter_Shooter_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooter(); \
@@ -65,13 +77,22 @@ public: \
 	FORCEINLINE static uint32 __PPO__BaseLookUpRate() { return STRUCT_OFFSET(AShooter, BaseLookUpRate); } \
 	FORCEINLINE static uint32 __PPO__MouseVerticalSensitivity() { return STRUCT_OFFSET(AShooter, MouseVerticalSensitivity); } \
 	FORCEINLINE static uint32 __PPO__MouseHorizontalSensitivity() { return STRUCT_OFFSET(AShooter, MouseHorizontalSensitivity); } \
+	FORCEINLINE static uint32 __PPO__HipMouseVerticalSensitivity() { return STRUCT_OFFSET(AShooter, HipMouseVerticalSensitivity); } \
+	FORCEINLINE static uint32 __PPO__HipMouseHorizontalSensitivity() { return STRUCT_OFFSET(AShooter, HipMouseHorizontalSensitivity); } \
+	FORCEINLINE static uint32 __PPO__AimMouseVerticalSensitivity() { return STRUCT_OFFSET(AShooter, AimMouseVerticalSensitivity); } \
+	FORCEINLINE static uint32 __PPO__AimMouseHorizontalSensitivity() { return STRUCT_OFFSET(AShooter, AimMouseHorizontalSensitivity); } \
 	FORCEINLINE static uint32 __PPO__FireSound() { return STRUCT_OFFSET(AShooter, FireSound); } \
 	FORCEINLINE static uint32 __PPO__MuzzleFlash() { return STRUCT_OFFSET(AShooter, MuzzleFlash); } \
 	FORCEINLINE static uint32 __PPO__HipFireMontage() { return STRUCT_OFFSET(AShooter, HipFireMontage); } \
 	FORCEINLINE static uint32 __PPO__ImpactParticles() { return STRUCT_OFFSET(AShooter, ImpactParticles); } \
 	FORCEINLINE static uint32 __PPO__BeamParticles() { return STRUCT_OFFSET(AShooter, BeamParticles); } \
 	FORCEINLINE static uint32 __PPO__bIsAiming() { return STRUCT_OFFSET(AShooter, bIsAiming); } \
-	FORCEINLINE static uint32 __PPO__FollowCameraAimSpeed() { return STRUCT_OFFSET(AShooter, FollowCameraAimSpeed); }
+	FORCEINLINE static uint32 __PPO__FollowCameraAimSpeed() { return STRUCT_OFFSET(AShooter, FollowCameraAimSpeed); } \
+	FORCEINLINE static uint32 __PPO__CrosshairSpreadMultiplier() { return STRUCT_OFFSET(AShooter, CrosshairSpreadMultiplier); } \
+	FORCEINLINE static uint32 __PPO__CrosshairSpreadAir() { return STRUCT_OFFSET(AShooter, CrosshairSpreadAir); } \
+	FORCEINLINE static uint32 __PPO__CrosshairSpreadMotion() { return STRUCT_OFFSET(AShooter, CrosshairSpreadMotion); } \
+	FORCEINLINE static uint32 __PPO__CrosshairSpreadAim() { return STRUCT_OFFSET(AShooter, CrosshairSpreadAim); } \
+	FORCEINLINE static uint32 __PPO__CrosshairSpreadHip() { return STRUCT_OFFSET(AShooter, CrosshairSpreadHip); }
 
 
 #define MyShooter_Source_MyShooter_Shooter_h_9_PROLOG

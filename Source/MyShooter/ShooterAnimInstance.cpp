@@ -32,9 +32,11 @@ void UShooterAnimInstance::UpdateAnimationProperties(float DeltaTime)
 		FString OffsetMessage = FString::Printf(TEXT("MovementOffsetYaw : %f"), MovementOffsetYaw);
 		FString PrevOffsetMessage = FString::Printf(TEXT("PrevMovementOffsetYaw : %f"), PrevMovementOffsetYaw);
 		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::White, OffsetMessage);
-			GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Red, PrevOffsetMessage);
+			//GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::White, OffsetMessage);
+			//GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Red, PrevOffsetMessage);
 		}
+
+		bIsAiming = ShooterCharacter->IsAiming();
 	}
 
 }
