@@ -63,6 +63,10 @@ protected:
 	UFUNCTION()
 	void AutoFireReset();
 
+	bool TraceUnderCrosshair(FHitResult& OutHitResult);
+
+	void TraceForItems();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -171,6 +175,11 @@ private:
 	float AutoFireRate;
 	FTimerHandle AutoFireTimer;
 
+	int8 OverlappedItemCount;
+	bool bShouldTraceForItems;
+
+	class AItem* CurrentLookItem;
+
 public:
 	/*Returns a CameraBoom object*/
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
@@ -183,4 +192,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetCrosshairSpreadMultiplier() const;
+
+	FORCEINLINE int8 GetOverlappedItemCount() const { return OverlappedItemCount; }
+
+	void IncrementOverlappedItemCount(int8 Amount);
+
+	void DecrementOverlappedItemCount(int8 Amount, AItem* ExitedItem);
 };

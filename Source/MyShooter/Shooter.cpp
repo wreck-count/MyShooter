@@ -11,6 +11,9 @@
 #include "DrawDebugHelpers.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include <MyShooter/Item.h>
+#include "Components/WidgetComponent.h"
+
 // Sets default values
 AShooter::AShooter() :
 	//Base aim rates
@@ -37,11 +40,15 @@ AShooter::AShooter() :
 	//weapon fire variables
 	bFireButtonPressed(false),
 	bShouldFire(true),
-	AutoFireRate(.1f)
+	AutoFireRate(.1f),
+	//Item trace variables
+	bShouldTraceForItems(false),
+	OverlappedItemCount(0)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	CurrentLookItem = nullptr;
 	//create a camera which has camera boom retract enabled
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -85,11 +92,20 @@ void AShooter::BeginPlay()
 void AShooter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
 	UpdateAim(DeltaTime);
+	
 	UpdateMouseSensitivity();
+	
 	CalculateCrosshairSpreadMultiplier(DeltaTime);
+	
 	FString CrosshairSpreadMessage = FString::Printf(TEXT("CrossHairSpreadMultiplier : %f"), CrosshairSpreadMultiplier);
 	GEngine->AddOnScreenDebugMessage(1, 0.f, FColor::Red, CrosshairSpreadMessage);
+
+	
+	if (bShouldTraceForItems) {
+		TraceForItems();
+	}
 
 }
 
@@ -160,6 +176,78 @@ void AShooter::AutoFireReset()
 	bShouldFire = true;
 	if (bFireButtonPressed) {
 		StartAutoFire();
+	}
+}
+
+bool AShooter::TraceUnderCrosshair(FHitResult& OutHitResult)
+{
+	FVector2D ViewportSize;
+	
+	if (GEngine && GEngine->GameViewport) {
+		GEngine->GameViewport->GetViewportSize(ViewportSize);
+	}
+
+	const FVector2D CrosshairPosition{ ViewportSize.X/2, ViewportSize.Y/2 };
+	
+	FVector CrosshairWorldPosition, CrosshairWorldDirection;
+	bool bScreenToWorld = UGameplayStatics::DeprojectScreenToWorld(UGameplayStatics::GetPlayerController(GetWorld(), 0), CrosshairPosition, 
+		CrosshairWorldPosition, CrosshairWorldDirection);
+
+	if (bScreenToWorld) {
+		const FVector Start{ CrosshairWorldPosition };
+		const FVector End{ Start + CrosshairWorldDirection * 1'000.0f };
+
+		GetWorld()->LineTraceSingleByChannel(OutHitResult, Start, End, ECollisionChannel::ECC_Visibility);
+
+		if (OutHitResult.bBlockingHit) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void AShooter::IncrementOverlappedItemCount(int8 Amount)
+{
+	OverlappedItemCount += Amount;
+	if (OverlappedItemCount > 0) {
+		bShouldTraceForItems = true;
+	}
+}
+
+void AShooter::DecrementOverlappedItemCount(int8 Amount, AItem* ExitedItem)
+{
+	OverlappedItemCount -= Amount;
+	if (OverlappedItemCount <= 0) {
+		bShouldTraceForItems = false;
+	}
+	if (ExitedItem == CurrentLookItem) {
+		CurrentLookItem->GetPickupWidget()->SetVisibility(false);
+		CurrentLookItem = nullptr;
+	}
+}
+
+void AShooter::TraceForItems()
+{
+	FHitResult ItemLook;
+
+	if (TraceUnderCrosshair(ItemLook)) {
+		AItem* HitItem = Cast<AItem>(ItemLook.GetActor());
+		if (HitItem && HitItem->IsWithinShooterRange()) {
+			if (CurrentLookItem != HitItem) {
+				if (CurrentLookItem) {
+					CurrentLookItem->GetPickupWidget()->SetVisibility(false);
+				}
+				if(HitItem->GetPickupWidget()){
+					HitItem->GetPickupWidget()->SetVisibility(true);
+				}
+				CurrentLookItem = HitItem;
+			}
+		}
+		else if (!HitItem && CurrentLookItem) {
+			CurrentLookItem->GetPickupWidget()->SetVisibility(false);
+			CurrentLookItem = nullptr;
+		}
 	}
 }
 

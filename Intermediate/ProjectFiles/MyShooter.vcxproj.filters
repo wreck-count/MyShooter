@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <None Include="..\..\MyShooter.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{1904FE8D-E11E-4780-9ABD-F47737463251}</UniqueIdentifier>
+      <UniqueIdentifier>{94D2F470-BCB0-4A3E-892F-169894658E31}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\MyShooter.Target.cs">
       <Filter>Source</Filter>
@@ -14,9 +14,12 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{9666FFB2-F0A4-496B-B241-9ABCB9D6FDB3}</UniqueIdentifier>
+      <UniqueIdentifier>{AC893C46-78E4-45E2-BB21-D7AC7443595A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorSettings.ini">
       <Filter>Config</Filter>
     </None>
     <None Include="..\..\Config\DefaultEngine.ini">
@@ -29,8 +32,14 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\MyShooter">
-      <UniqueIdentifier>{BFB2198E-3531-4B85-9699-65CDAC87D253}</UniqueIdentifier>
+      <UniqueIdentifier>{C90558A3-3A57-43A2-84AC-DC69BF1E0A34}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\MyShooter\Item.cpp">
+      <Filter>Source\MyShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyShooter\Item.h">
+      <Filter>Source\MyShooter</Filter>
+    </ClInclude>
     <None Include="..\..\Source\MyShooter\MyShooter.Build.cs">
       <Filter>Source\MyShooter</Filter>
     </None>
@@ -62,6 +71,12 @@
       <Filter>Source\MyShooter</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\MyShooter\ShooterAnimInstance.h">
+      <Filter>Source\MyShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MyShooter\Weapon.cpp">
+      <Filter>Source\MyShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyShooter\Weapon.h">
       <Filter>Source\MyShooter</Filter>
     </ClInclude>
   </ItemGroup>
