@@ -16,20 +16,20 @@ struct FHitResult;
 #endif
 #define MYSHOOTER_Item_generated_h
 
-#define MyShooter_Source_MyShooter_Item_h_12_SPARSE_DATA
-#define MyShooter_Source_MyShooter_Item_h_12_RPC_WRAPPERS \
+#define MyShooter_Source_MyShooter_Item_h_22_SPARSE_DATA
+#define MyShooter_Source_MyShooter_Item_h_22_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execShooterOffOverlap); \
 	DECLARE_FUNCTION(execShooterOnOverlap);
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define MyShooter_Source_MyShooter_Item_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execShooterOffOverlap); \
 	DECLARE_FUNCTION(execShooterOnOverlap);
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_INCLASS_NO_PURE_DECLS \
+#define MyShooter_Source_MyShooter_Item_h_22_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAItem(); \
 	friend struct Z_Construct_UClass_AItem_Statics; \
@@ -38,7 +38,7 @@ public: \
 	DECLARE_SERIALIZER(AItem)
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_INCLASS \
+#define MyShooter_Source_MyShooter_Item_h_22_INCLASS \
 private: \
 	static void StaticRegisterNativesAItem(); \
 	friend struct Z_Construct_UClass_AItem_Statics; \
@@ -47,7 +47,7 @@ public: \
 	DECLARE_SERIALIZER(AItem)
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_STANDARD_CONSTRUCTORS \
+#define MyShooter_Source_MyShooter_Item_h_22_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AItem(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AItem) \
@@ -60,7 +60,7 @@ private: \
 public:
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_ENHANCED_CONSTRUCTORS \
+#define MyShooter_Source_MyShooter_Item_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AItem(AItem&&); \
@@ -71,36 +71,38 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AItem)
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_PRIVATE_PROPERTY_OFFSET \
+#define MyShooter_Source_MyShooter_Item_h_22_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__BoxCollider() { return STRUCT_OFFSET(AItem, BoxCollider); } \
 	FORCEINLINE static uint32 __PPO__ItemMesh() { return STRUCT_OFFSET(AItem, ItemMesh); } \
 	FORCEINLINE static uint32 __PPO__PickupWidget() { return STRUCT_OFFSET(AItem, PickupWidget); } \
 	FORCEINLINE static uint32 __PPO__SphereCollider() { return STRUCT_OFFSET(AItem, SphereCollider); } \
 	FORCEINLINE static uint32 __PPO__ItemName() { return STRUCT_OFFSET(AItem, ItemName); } \
-	FORCEINLINE static uint32 __PPO__ItemCount() { return STRUCT_OFFSET(AItem, ItemCount); }
+	FORCEINLINE static uint32 __PPO__ItemCount() { return STRUCT_OFFSET(AItem, ItemCount); } \
+	FORCEINLINE static uint32 __PPO__ItemRarity() { return STRUCT_OFFSET(AItem, ItemRarity); } \
+	FORCEINLINE static uint32 __PPO__ActiveStars() { return STRUCT_OFFSET(AItem, ActiveStars); }
 
 
-#define MyShooter_Source_MyShooter_Item_h_9_PROLOG
-#define MyShooter_Source_MyShooter_Item_h_12_GENERATED_BODY_LEGACY \
+#define MyShooter_Source_MyShooter_Item_h_19_PROLOG
+#define MyShooter_Source_MyShooter_Item_h_22_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	MyShooter_Source_MyShooter_Item_h_12_PRIVATE_PROPERTY_OFFSET \
-	MyShooter_Source_MyShooter_Item_h_12_SPARSE_DATA \
-	MyShooter_Source_MyShooter_Item_h_12_RPC_WRAPPERS \
-	MyShooter_Source_MyShooter_Item_h_12_INCLASS \
-	MyShooter_Source_MyShooter_Item_h_12_STANDARD_CONSTRUCTORS \
+	MyShooter_Source_MyShooter_Item_h_22_PRIVATE_PROPERTY_OFFSET \
+	MyShooter_Source_MyShooter_Item_h_22_SPARSE_DATA \
+	MyShooter_Source_MyShooter_Item_h_22_RPC_WRAPPERS \
+	MyShooter_Source_MyShooter_Item_h_22_INCLASS \
+	MyShooter_Source_MyShooter_Item_h_22_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define MyShooter_Source_MyShooter_Item_h_12_GENERATED_BODY \
+#define MyShooter_Source_MyShooter_Item_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	MyShooter_Source_MyShooter_Item_h_12_PRIVATE_PROPERTY_OFFSET \
-	MyShooter_Source_MyShooter_Item_h_12_SPARSE_DATA \
-	MyShooter_Source_MyShooter_Item_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	MyShooter_Source_MyShooter_Item_h_12_INCLASS_NO_PURE_DECLS \
-	MyShooter_Source_MyShooter_Item_h_12_ENHANCED_CONSTRUCTORS \
+	MyShooter_Source_MyShooter_Item_h_22_PRIVATE_PROPERTY_OFFSET \
+	MyShooter_Source_MyShooter_Item_h_22_SPARSE_DATA \
+	MyShooter_Source_MyShooter_Item_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	MyShooter_Source_MyShooter_Item_h_22_INCLASS_NO_PURE_DECLS \
+	MyShooter_Source_MyShooter_Item_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -110,5 +112,16 @@ template<> MYSHOOTER_API UClass* StaticClass<class AItem>();
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID MyShooter_Source_MyShooter_Item_h
 
+
+#define FOREACH_ENUM_EITEMRARITY(op) \
+	op(EItemRarity::EIR_Damaged) \
+	op(EItemRarity::EIR_Common) \
+	op(EItemRarity::EIR_Uncommon) \
+	op(EItemRarity::EIR_Rare) \
+	op(EItemRarity::EIR_Legendary) \
+	op(EItemRarity::EIR_DefaultMAX) 
+
+enum class EItemRarity : uint8;
+template<> MYSHOOTER_API UEnum* StaticEnum<EItemRarity>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
