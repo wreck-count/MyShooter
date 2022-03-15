@@ -67,6 +67,10 @@ protected:
 
 	void TraceForItems();
 
+	class AWeapon* SpawnDefaultWeapon();
+
+	void EquipWeapon(AWeapon* Weapon);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -179,6 +183,14 @@ private:
 	bool bShouldTraceForItems;
 
 	class AItem* CurrentLookItem;
+
+	/* Currently Equipped weapon*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	AWeapon* EquippedWeapon;
+
+	/*Set this in blueprints for the default weapon class*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<AWeapon> DefaultWeaponClass;
 
 public:
 	/*Returns a CameraBoom object*/

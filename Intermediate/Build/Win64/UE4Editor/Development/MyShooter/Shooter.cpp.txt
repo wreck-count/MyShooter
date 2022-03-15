@@ -52,6 +52,8 @@ D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Emitt
 D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ParticleSystemComponent.generated.h
 D:\game-dev\practice\Shooter\MyShooter\Source\MyShooter/Item.h
 D:\game-dev\practice\Shooter\MyShooter\Intermediate\Build\Win64\UE4Editor\Inc\MyShooter\Item.generated.h
+D:\game-dev\practice\Shooter\MyShooter\Source\MyShooter\Weapon.h
+D:\game-dev\practice\Shooter\MyShooter\Intermediate\Build\Win64\UE4Editor\Inc\MyShooter\Weapon.generated.h
 D:\huge games\UE_4.27\Engine\Source\Runtime\UMG\Public\Components/WidgetComponent.h
 D:\huge games\UE_4.27\Engine\Source\Runtime\UMG\Public\Blueprint/UserWidget.h
 D:\huge games\UE_4.27\Engine\Source\Runtime\UMG\Public\Components/SlateWrapperTypes.h
@@ -153,3 +155,9 @@ D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\DynamicP
 D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetBlueprintGeneratedClass.generated.h
 D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\UserWidget.generated.h
 D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetComponent.generated.h
+D:\huge games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/SphereComponent.h
+D:\huge games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
+D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SphereComponent.generated.h
+D:\huge games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+D:\huge games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h

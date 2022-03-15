@@ -92,7 +92,9 @@ public: \
 	FORCEINLINE static uint32 __PPO__CrosshairSpreadAir() { return STRUCT_OFFSET(AShooter, CrosshairSpreadAir); } \
 	FORCEINLINE static uint32 __PPO__CrosshairSpreadMotion() { return STRUCT_OFFSET(AShooter, CrosshairSpreadMotion); } \
 	FORCEINLINE static uint32 __PPO__CrosshairSpreadAim() { return STRUCT_OFFSET(AShooter, CrosshairSpreadAim); } \
-	FORCEINLINE static uint32 __PPO__CrosshairSpreadHip() { return STRUCT_OFFSET(AShooter, CrosshairSpreadHip); }
+	FORCEINLINE static uint32 __PPO__CrosshairSpreadHip() { return STRUCT_OFFSET(AShooter, CrosshairSpreadHip); } \
+	FORCEINLINE static uint32 __PPO__EquippedWeapon() { return STRUCT_OFFSET(AShooter, EquippedWeapon); } \
+	FORCEINLINE static uint32 __PPO__DefaultWeaponClass() { return STRUCT_OFFSET(AShooter, DefaultWeaponClass); }
 
 
 #define MyShooter_Source_MyShooter_Shooter_h_9_PROLOG

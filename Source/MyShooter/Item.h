@@ -80,6 +80,8 @@ private:
 	TArray<bool> ActiveStars;
 
 public:
-	FORCEINLINE UWidgetComponent* GetPickupWidget() { return PickupWidget; }
-	FORCEINLINE bool IsWithinShooterRange() { return bWithinShooterRange; }
+	FORCEINLINE UWidgetComponent* GetPickupWidget() const { return PickupWidget; }
+	FORCEINLINE bool IsWithinShooterRange() const { return bWithinShooterRange; }
+	FORCEINLINE UBoxComponent* GetBoxCollider() const { return BoxCollider; }
+	FORCEINLINE USphereComponent* GetSphereCollider() const { return SphereCollider; }
 };

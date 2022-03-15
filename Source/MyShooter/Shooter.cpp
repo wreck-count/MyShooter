@@ -12,7 +12,10 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include <MyShooter/Item.h>
+#include "Weapon.h"
 #include "Components/WidgetComponent.h"
+#include "Components/SphereComponent.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 AShooter::AShooter() :
@@ -86,6 +89,9 @@ void AShooter::BeginPlay()
 	MouseHorizontalSensitivity = HipMouseHorizontalSensitivity;
 
 	CrosshairSpreadMultiplier = CrosshairSpreadAim = CrosshairSpreadAir = CrosshairSpreadHip = CrosshairSpreadMotion = 0.f;
+
+	EquipWeapon(SpawnDefaultWeapon());
+
 }
 
 // Called every frame
@@ -249,6 +255,37 @@ void AShooter::TraceForItems()
 			CurrentLookItem = nullptr;
 		}
 	}
+}
+
+AWeapon* AShooter::SpawnDefaultWeapon()
+{
+	// Check TSubClassOf Variable 
+	if (DefaultWeaponClass) {
+		
+		//Spawn the weapon
+		AWeapon* DefaultWeapon = GetWorld()->SpawnActor<AWeapon>(DefaultWeaponClass);
+		
+		return DefaultWeapon;
+	}
+	return nullptr;
+}
+
+void AShooter::EquipWeapon(AWeapon* Weapon)
+{
+	//Get Right Hand Socket
+	const USkeletalMeshSocket* RightHandSocket = GetMesh()->GetSocketByName(FName("right_hand_socket"));
+
+	Weapon->GetBoxCollider()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	Weapon->GetSphereCollider()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+
+	// If Right hand socket is valid then attach weapon to it
+	if (RightHandSocket) {
+
+		RightHandSocket->AttachActor(Weapon, GetMesh());
+
+	}
+	//Set Equipped Weapon to default weapon
+	EquippedWeapon = Weapon;
 }
 
 
